@@ -5,8 +5,8 @@ const multer = require('multer');
 
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIAJCUXDBSYGLGF52LQ',
-    secretAccessKey: '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'
+    accessKeyId: '',
+    secretAccessKey: ''
 })
 var storage = multer.memoryStorage({
     destination: function(req, file, callback) {
