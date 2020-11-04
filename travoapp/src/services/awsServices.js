@@ -32,13 +32,9 @@ const getImages = (bucketName) => new Promise((resolve, reject) => {
 })
 
 const uploadImages = (formData) => new Promise((resolve, reject) => {
-    var a = formData.get('file[]')
+    var a = formData.get('file')
     console.log("FORMDATA: ", a)
-    axios.post('/upload', formData, {headers: {
-        'Content-Type': 'multipart/form-data',
-        'X-Requested-With': 'XMLHttpRequest',
-        
-    }})
+    axios.post('/upload', formData)
     .then(res => {
         resolve(res.data);
     })

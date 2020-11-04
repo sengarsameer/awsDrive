@@ -18,7 +18,7 @@
             <div>OR</div>
             <div class="file-input">
                 <label for="file">Select a file</label>
-                <input type="file" id="file" @change="onInputChange" multiple>
+                <input type="file" id="file" name="file" @change="onInputChange" multiple>
             </div>
         </div>
 
@@ -93,7 +93,7 @@ export default {
             const formData = new FormData();
             
             this.files.forEach(file => {
-                formData.append('file[]', file);
+                formData.append('file', file, file.name);
             });
             formData.append("bucketName", this.$route.params.id)
             // axios.post('/images-upload', formData)
@@ -104,7 +104,11 @@ export default {
             //     })
             awsServices.uploadImages(formData)
             .then(res => {
-                console.log("Res: ", res)
+                //         this.$toastr.s('All images uplaoded successfully');
+                alert('All images uplaoded successfully');
+                this.images = [];
+                this.files = [];
+                // console.log("Res: ", res)
             })
         }
     }

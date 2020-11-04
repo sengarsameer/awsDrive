@@ -59,7 +59,6 @@ export default {
             isModal: false,
             bucketList: [],
             selectedBucket: "",
-            // bucket: bucketList
         };
     },
     methods: {
@@ -69,9 +68,6 @@ export default {
         closeModal() {
             this.isModal = false;
         },
-        // bucketList() {
-        //     this.bucketList.forEach(ele => {})
-        // }
         addBucket(bucket) {
             console.log("Bucket: ", bucket);
             this.bucketList.push({ Name: bucket, CreationDate: new Date() });

@@ -2,8 +2,7 @@
   <div class="homepage"> 
       <nav-bar />
       <side-bar />
-      <!-- <image-upload /> -->
-      <dash-board />
+      <dash-board :imageList="imageList" />
 
   </div>
 </template>
@@ -11,7 +10,6 @@
 <script>
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
-import ImageUpload from './components/ImageUpload';
 import DashBoard from './components/DashBoard';
 import awsServices from '@/services/awsServices';
 
@@ -21,7 +19,6 @@ export default {
     components: {
         NavBar,
         SideBar,
-        ImageUpload,
         DashBoard
     },
     data() {
@@ -30,11 +27,7 @@ export default {
         }
     },
     mounted() {
-        // awsServices.getBucketList()
-        // .then(res => {
-        //     this.bucketList = res
-        // })
-        console.log("Helllo")
+
     },
     beforeMount() {
         this.getImages();

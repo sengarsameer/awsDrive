@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 // app.use(bodyParser.urlencoded());
 app.use(cors({credentials: true, origin: true}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(imageRouter);
 
 app.listen(port, () => {
