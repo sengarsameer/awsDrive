@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
 // Uploading the images
 router.post('/upload', multipleUpload, (req, res) => {
     const bucketName = req.body.bucketName;
-    console.log("REq: ", req.files);
-    console.log("Name: ", bucketName);
-    var flag;
+    // console.log("REq: ", req.files);
+    // console.log("Name: ", bucketName);
+    // var flag;
     var ResponseData = [];
     req.files.map((item) => {
         let myFile = item.originalname.split('.');

@@ -21,7 +21,6 @@ const createBucket = (bucketName) => new Promise((resolve, reject) => {
 })
 
 const getImages = (bucketName) => new Promise((resolve, reject) => {
-    console.log("Bucket: ", bucketName)
     axios.post('/all-images', {bucketName: bucketName})
     .then(res => {
         resolve(res.data);
@@ -32,8 +31,8 @@ const getImages = (bucketName) => new Promise((resolve, reject) => {
 })
 
 const uploadImages = (formData) => new Promise((resolve, reject) => {
-    var a = formData.get('file')
-    console.log("FORMDATA: ", a)
+    // var a = formData.get('file')
+    // console.log("FORMDATA: ", a)
     axios.post('/upload', formData)
     .then(res => {
         resolve(res.data);

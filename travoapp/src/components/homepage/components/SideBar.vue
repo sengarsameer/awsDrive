@@ -42,7 +42,7 @@
                 </ul>
             </div>
         </nav>
-        <modal ref="Modal" @close="closeModal" @bucket="addBucket" />
+        <modal v-if="showModal" @close="closeModal" @bucket="addBucket" :closeModal="closeModal" :bucketList="bucketList" />
     </div>
 </template>
 

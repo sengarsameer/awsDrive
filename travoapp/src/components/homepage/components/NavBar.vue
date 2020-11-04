@@ -1,7 +1,8 @@
 <template>
     <div>
         <nav
-            class="navbar navbar-dark fixed-top sticky-top bg-dark flex-md-nowrap p-0 shadow"
+            class="navbar navbar-dark fixed-top sticky-top bg-dark flex-md-nowrap p-0 shadow navbar-fixed-top"
+            style="position: fixed"
         >
             <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
                 Company name

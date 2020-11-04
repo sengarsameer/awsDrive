@@ -23,7 +23,15 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input v-model="bucketName" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <input
+                            v-model="bucketName"
+                            required="true"
+                            type="text"
+                            class="form-control"
+                            placeholder="Bucket Name"
+                            name="bucketname"
+                            aria-describedby="basic-addon1"
+                        />
                     </div>
                     <div class="modal-footer">
                         <button
@@ -33,7 +41,11 @@
                         >
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary" @click="save">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            @click="save"
+                        >
                             Create
                         </button>
                     </div>
@@ -44,28 +56,40 @@
 </template>
 
 <script>
-import awsServices from '@/services/awsServices';
+import awsServices from "@/services/awsServices";
+// import axios from '@/axios'
 export default {
     name: "Modal",
-    props: [],
+    props: ["closeModal", "bucketList"],
     data() {
         return {
-            bucketName: '',
-        }
+            bucketName: "",
+        };
     },
     methods: {
         close() {
-            this.$emit('close');
+            this.$emit("close");
         },
         save() {
-            awsServices.createBucket(this.bucketName)
-            .then(res => {
-                this.$emit('bucket', this.bucketName)
-                this.close();
+            const response = this.bucketList.map((res) => {
+                if(this.bucketName == res.Name) {
+                    this.$toastr.w("This BucketName already have, try another one!");
+                    return false;
+                }
             })
-        }
+            if(response[0] == false) {
+                return
+            }
+            awsServices.createBucket(this.bucketName).then((res) => {
+                this.$emit("bucket", this.bucketName);
+                if (res.Location) {
+                    this.$toastr.s("SUCCESS MESSAGE", "Your Bucket added successfully");
+                    this.closeModal;
+                }
+                this.$emit("close");
+            });
+        },
     },
-
 };
 </script>
 

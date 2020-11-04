@@ -4,12 +4,12 @@
             <div
                 class="col-lg-3 col-md-3 col-sm-3 col-xs-6"
                 style="margin-top: 10px"
-                v-for="(image, i) in imageList.Contents"
+                v-for="(image, i) in images"
                 :key="i"
             >
                 <img
                     class="image img-responsive img-fluid img-thumbnail"
-                    :src="imgURL + image.Key"
+                    :src="image"
                     @click="index = i"
                 />
             </div>
@@ -30,24 +30,27 @@ export default {
     components: {
         VueGallerySlideshow,
     },
-    props: ["imageList"],
+    props: ["images"],
     data() {
         return {
             imgURL: "https://" + this.$route.params.id + ".s3.amazonaws.com/",
-            images: [
-                "https://placekitten.com/801/800",
-                "https://placekitten.com/802/800",
-                "https://placekitten.com/803/800",
-                "https://placekitten.com/804/800",
-                "https://placekitten.com/805/800",
-                "https://placekitten.com/806/800",
-                "https://placekitten.com/807/800",
-                "https://placekitten.com/808/800",
-                "https://placekitten.com/809/800",
-                "https://placekitten.com/810/800",
-            ],
+            // images: [
+            //     "https://placekitten.com/801/800",
+            //     "https://placekitten.com/802/800",
+            //     "https://placekitten.com/803/800",
+            //     "https://placekitten.com/804/800",
+            //     "https://placekitten.com/805/800",
+            //     "https://placekitten.com/806/800",
+            //     "https://placekitten.com/807/800",
+            //     "https://placekitten.com/808/800",
+            //     "https://placekitten.com/809/800",
+            //     "https://placekitten.com/810/800",
+            // ],
             index: null,
         };
+    },
+    methods: {
+
     },
     mounted() {
         // awsServices.getBucketList().then((res) => {

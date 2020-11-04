@@ -69,10 +69,11 @@ export default {
             Array.from(files).forEach(file => this.addImage(file));
         },
         addImage(file) {
-            // if (!file.type.match('image.*')) {
-            //     this.$toastr.e(`${file.name} is not an image`);
-            //     return;
-            // }
+            // console.log("FILES: ", this.files.size);
+            if (!file.type.match('image.*')) {
+                this.$toastr.e(`${file.name} is not an image`);
+                return;
+            }
             this.files.push(file);
             const img = new Image(),
                 reader = new FileReader();
@@ -96,19 +97,12 @@ export default {
                 formData.append('file', file, file.name);
             });
             formData.append("bucketName", this.$route.params.id)
-            // axios.post('/images-upload', formData)
-            //     .then(response => {
-            //         this.$toastr.s('All images uplaoded successfully');
-            //         this.images = [];
-            //         this.files = [];
-            //     })
             awsServices.uploadImages(formData)
             .then(res => {
-                //         this.$toastr.s('All images uplaoded successfully');
-                alert('All images uplaoded successfully');
+                this.$toastr.s("SUCCESS MESSAGE", "All images uplaoded successfully");
+                this.$emit('update-img', res.Data)
                 this.images = [];
                 this.files = [];
-                // console.log("Res: ", res)
             })
         }
     }

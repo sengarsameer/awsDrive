@@ -1,7 +1,7 @@
 <!-- eslint-disable -->
 <template>
     <div>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
@@ -9,13 +9,13 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <image-uploader />
+                    <image-uploader @update-img="updateImage" />
                 </div>
             </div>
 
-            <gallery :imageList="imageList" />
+            <gallery :images="images" />
 
-        </main>
+        </div>
     </div>
 </template>
 
@@ -26,24 +26,31 @@ export default {
     name: "DashBoard",
     components: {
         Gallery,
-        ImageUploader
+        ImageUploader,
     },
-    props: ['imageList'],
+    props: ['images'],
     data() {
         return {
             files: [],
             uploadedFiles: [],
             setURL: "",
+            updatedImageList: []
         };
     },
     methods: {
-    
+        updateImage(updateImg) {
+           
+            updateImg.map((res) => {
+                this.images.push("https://" + this.$route.params.id + ".s3.amazonaws.com/"+res.Key);
+            })
+
+        }
     },
     created() {
 
     },
     mounted() {
-        this.setURL = this.$route.path;
+        
     },
     beforeMount() {
 
